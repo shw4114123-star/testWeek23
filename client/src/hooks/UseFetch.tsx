@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react"
 
 // , "authorization": `Bearer ${token}` 
-export default function UseFetch(url: string, body: Object | any, token?: string) {
+export default function UseFetch(url: string) {
     const [data, setDate] = useState()
+    const [error, setError] = useState()
     useEffect(() => {
-        fetch(url, {
-            method: "post",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(body)
-        })
+        fetch(url)
             .then(res => res.json())
             .then(data => setDate(data))
-            .catch(error => console.error(error))
+            .catch(error => setError(error))
     }, [url])
-    return { data }
+    return [
+        data,
+        error
+    ]
 }
