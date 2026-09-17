@@ -15,3 +15,4 @@ export async function createUserDAL(userName, email, hashPass) {
     user._id = data.insertedId
     return user 
 }
+
